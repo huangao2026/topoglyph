@@ -8,19 +8,54 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - COZE_WORKLOAD_IDENTITY_API_KEY=${API_KEY}
-      - COZE_INTEGRATION_MODEL_BASE_URL=${BASE_URL}
+      # 必需的环境变量
       - COZE_WORKSPACE_PATH=/app
-      - SECRET_KEY=${SECRET_KEY}
-      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+      - COZE_WORKLOAD_IDENTITY_API_KEY=${COZE_WORKLOAD_IDENTITY_API_KEY}
+      - COZE_INTEGRATION_MODEL_BASE_URL=${COZE_INTEGRATION_MODEL_BASE_URL}
+      - SECRET_KEY=${SECRET_KEY:-change_this_to_a_random_secret}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
+
+      # PostgreSQL 数据库配置
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_USER=${DB_USER:-ancienttext}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME:-ancienttext}
+      - DATABASE_URL=${DATABASE_URL}
+      - DB_POOL_SIZE=${DB_POOL_SIZE:-10}
+      - DB_MAX_OVERFLOW=${DB_MAX_OVERFLOW:-20}
+      - DB_TIMEOUT=${DB_TIMEOUT:-30}
+      - DB_POOL_RECYCLE=${DB_POOL_RECYCLE:-3600}
+
+      # Redis 缓存配置
+      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+      - REDIS_DB=${REDIS_DB:-0}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+      - REDIS_URL=${REDIS_URL}
+      - REDIS_MAX_CONNECTIONS=${REDIS_MAX_CONNECTIONS:-50}
+      - REDIS_TIMEOUT=${REDIS_TIMEOUT:-5}
+      - REDIS_CACHE_TTL=${REDIS_CACHE_TTL:-3600}
+
+      # 日志配置
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MAX_MESSAGES=${MAX_MESSAGES:-40}
+
+      # 模型配置
+      - MODEL_TEMPERATURE=${MODEL_TEMPERATURE:-0.6}
+      - MAX_TOKENS=${MAX_TOKENS:-32768}
+      - REQUEST_TIMEOUT=${REQUEST_TIMEOUT:-600}
+
     volumes:
       - ./data:/app/data
       - ./logs:/app/work/logs
       - ./tmp:/tmp
     restart: unless-stopped
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - ancient-network
     healthcheck:
@@ -29,7 +64,7 @@ services:
       timeout: 10s
       retries: 3
 
-  # PostgreSQL数据库（可选）
+  # PostgreSQL数据库
   db:
     image: postgres:16-alpine
     container_name: ancient-text-ai-db
@@ -37,19 +72,27 @@ services:
       - POSTGRES_USER=${DB_USER:-ancienttext}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME:-ancienttext}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --locale=C
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
     restart: unless-stopped
     networks:
       - ancient-network
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-ancienttext} -d ${DB_NAME:-ancienttext}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
-  # Redis缓存（可选）
+  # Redis缓存
   redis:
     image: redis:7-alpine
     container_name: ancient-text-ai-redis
-    command: redis-server --appendonly yes
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-}
     volumes:
       - redis_data:/data
     restart: unless-stopped
@@ -57,6 +100,12 @@ services:
       - ancient-network
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   # Nginx反向代理（可选）
   nginx:
