@@ -30,6 +30,7 @@
 - ✅ **历史解读** - 提供历史文化背景
 - ✅ **AI工具推荐** - 推荐适合的AI破译工具
 - ✅ **前沿方法** - 应用2026年前沿方法论
+- ✅ **企业级知识库** - 集成火山引擎知识库，提供专业知识支持
 
 ### 🌍 支持的文字系统
 
@@ -115,6 +116,7 @@ cd ancient-script-ai
 | **缓存** | Redis | 7-alpine |
 | **容器化** | Docker & Docker Compose | Latest |
 | **反向代理** | Nginx | Latest |
+| **知识库** | 火山引擎知识库 | Latest |
 
 ### 架构图
 
@@ -167,6 +169,9 @@ cd ancient-script-ai
 | [docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md) | API文档 |
 | [docs/ARCHITECTURE_DESIGN.md](docs/ARCHITECTURE_DESIGN.md) | 架构设计 |
 | [docs/PLUGIN_DEVELOPMENT.md](docs/PLUGIN_DEVELOPMENT.md) | 插件开发 |
+| [VOLCENGINE_KNOWLEDGE_INTEGRATION.md](VOLCENGINE_KNOWLEDGE_INTEGRATION.md) | 火山引擎知识库集成 |
+| [VOLCENGINE_KNOWLEDGE_USAGE.md](VOLCENGINE_KNOWLEDGE_USAGE.md) | 火山引擎知识库使用 |
+| [AGENT_CONFIG_WITH_VOLCENGINE_KB.md](AGENT_CONFIG_WITH_VOLCENGINE_KB.md) | Agent配置示例 |
 
 ### 部署文档
 
@@ -175,6 +180,16 @@ cd ancient-script-ai
 | [CLOUD_DEPLOYMENT.md](CLOUD_DEPLOYMENT.md) | 云服务器部署 |
 | [DEPLOYMENT_QUICKSTART.md](DEPLOYMENT_QUICKSTART.md) | 部署快速开始 |
 | [EGYPTIAN_HIEROGLYPHS_ENHANCEMENT.md](EGYPTIAN_HIEROGLYPHS_ENHANCEMENT.md) | 埃及文字增强报告 |
+| [examples/README.md](examples/README.md) | 使用示例 |
+
+### 示例代码
+
+| 示例 | 说明 |
+|------|------|
+| [examples/quick_start_volcengine.py](examples/quick_start_volcengine.py) | 火山引擎知识库快速开始 |
+| [examples/volcengine_kb_examples.py](examples/volcengine_kb_examples.py) | 完整示例集（10个示例） |
+| [examples/ancient_text_agent_scenarios.py](examples/ancient_text_agent_scenarios.py) | 实际应用场景 |
+| [src/agents/agent_with_volcengine_kb.py](src/agents/agent_with_volcengine_kb.py) | 集成知识库的Agent代码 |
 
 ---
 
