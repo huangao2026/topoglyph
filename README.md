@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-v2.1-blue)
+![Version](https://img.shields.io/badge/version-v2.2-blue)
 ![Python](https://img.shields.io/badge/python-3.12+-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
 ![Stars](https://img.shields.io/badge/stars-⭐⭐⭐⭐⭐-yellow)
@@ -31,6 +31,9 @@
 - ✅ **AI工具推荐** - 推荐适合的AI破译工具
 - ✅ **前沿方法** - 应用2026年前沿方法论
 - ✅ **企业级知识库** - 集成火山引擎知识库，提供专业知识支持
+- ✅ **拓扑特征分析** - 集成专利技术的三层拓扑不变量层级互补体系
+- ✅ **跨文明同源性分析** - 支持语义类型自适应权重调整
+- ✅ **文化传播检测** - 揭示环数的文化传播指示器作用
 
 ### 🌍 支持的文字系统
 
@@ -172,6 +175,9 @@ cd ancient-script-ai
 | [VOLCENGINE_KNOWLEDGE_INTEGRATION.md](VOLCENGINE_KNOWLEDGE_INTEGRATION.md) | 火山引擎知识库集成 |
 | [VOLCENGINE_KNOWLEDGE_USAGE.md](VOLCENGINE_KNOWLEDGE_USAGE.md) | 火山引擎知识库使用 |
 | [AGENT_CONFIG_WITH_VOLCENGINE_KB.md](AGENT_CONFIG_WITH_VOLCENGINE_KB.md) | Agent配置示例 |
+| [PATENT_TECH_UPGRADE.md](PATENT_TECH_UPGRADE.md) | 专利技术升级 |
+| [TOPOLOGY_ANALYSIS_GUIDE.md](TOPOLOGY_ANALYSIS_GUIDE.md) | 拓扑分析指南 |
+| [PATENT_TECH_UPGRADE_COMPLETE.md](PATENT_TECH_UPGRADE_COMPLETE.md) | 升级完成报告 |
 
 ### 部署文档
 
