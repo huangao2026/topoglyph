@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-v2.2-blue)
+![Version](https://img.shields.io/badge/version-v3.0-blue)
 ![Python](https://img.shields.io/badge/python-3.12+-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
 ![Stars](https://img.shields.io/badge/stars-⭐⭐⭐⭐⭐-yellow)
@@ -46,6 +46,62 @@
 | **玛雅文字** | ⭐⭐⭐⭐ | 玛雅文明（约公元前300-1697年） |
 | **线形文字B** | ⭐⭐⭐⭐ | 迈锡尼（约公元前1450-1200年） |
 | **哈拉帕文字** | ⭐⭐ | 印度河文明（未完全破译） |
+
+---
+
+## 🚀 TCD Origin 跨文明古文字拓扑破译引擎
+
+TCD Origin是基于D1-D5五层破译架构的跨文明古文字拓扑分析引擎，集成了专利技术和拓扑同源性距离公式。
+
+### 核心技术
+
+#### 1. D1-D5五层破译架构
+
+| 层级 | 名称 | 功能 |
+|------|------|------|
+| **D1** | 视觉形态层 | CNN特征提取（笔画宽度、曲率） |
+| **D2** | 拓扑几何层 | 拓扑不变量分析（欧拉示性数、贝蒂数） |
+| **D3** | 时间演化层 | 动力学演化路径（甲骨文→金文→小篆） |
+| **D4** | 意义确权层 | 语言游戏理论（语境锚定） |
+| **D5** | 逻辑坍缩层 | 多维度概率交叉验证 |
+
+#### 2. 拓扑同源性距离公式
+
+```
+D(S_a, S_b) = Σ ω_i × |T_i(a) - T_i(b)|
+```
+
+#### 3. 三层拓扑不变量层级
+
+| 层级 | 权重 | 关键指标 |
+|------|------|---------|
+| 全局形态 | 40% | 对称性、宽高比 |
+| 核心不变量 | 35% | 欧拉示性数、贝蒂数 |
+| 局部指纹 | 25% | 环数分布 |
+
+### 重要发现
+
+- **环数的文化传播指示器作用**：环数是区分独立起源与文化传播的最强指标
+- **特征区分力的概念依赖性**：不同语义类型需要不同的特征权重
+
+### 核心文件
+
+- `src/tools/tcd_origin_engine.py` - TCD Origin核心引擎
+- `src/tools/tcd_origin_tools.py` - LangChain工具封装
+- `scripts/test_tcd_origin.py` - 功能测试脚本
+
+### 快速使用
+
+```python
+from tools.tcd_origin_engine import TCDOriginEngine, SemanticType
+
+engine = TCDOriginEngine()
+result = engine.full_analysis(
+    image_data="symbol.jpg",
+    context="祭祀场景",
+    origin_estimate="甲骨文"
+)
+```
 
 ---
 
