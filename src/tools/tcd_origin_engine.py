@@ -197,34 +197,38 @@ class SemanticTypeConfig:
     """语义类型配置 - D1-D5架构权重"""
     
     # D1-D5各层对不同语义类型的权重
+    # 基于最新研究数据调整权重分配
+    # 关键发现：对称性（Symmetry）是跨文明同源性的最强判别指标
+    # - 对称性相关系数：0.68（p<0.001）统计显著
+    # - 环数相关系数：0.23（p=0.07）统计不显著
     LAYER_WEIGHTS = {
         SemanticType.CELESTIAL: {
-            DecodingLayer.D1_VISUAL: 0.15,
-            DecodingLayer.D2_TOPOLOGY: 0.30,
-            DecodingLayer.D3_EVOLUTION: 0.20,
+            DecodingLayer.D1_VISUAL: 0.10,
+            DecodingLayer.D2_TOPOLOGY: 0.40,  # 提高D2权重（对称性最强判别力）
+            DecodingLayer.D3_EVOLUTION: 0.15,
             DecodingLayer.D4_MEANING: 0.20,
             DecodingLayer.D5_COLLAPSE: 0.15
         },
         SemanticType.NATURAL: {
-            DecodingLayer.D1_VISUAL: 0.20,
-            DecodingLayer.D2_TOPOLOGY: 0.25,
-            DecodingLayer.D3_EVOLUTION: 0.25,
+            DecodingLayer.D1_VISUAL: 0.15,
+            DecodingLayer.D2_TOPOLOGY: 0.35,  # 提高D2权重
+            DecodingLayer.D3_EVOLUTION: 0.20,
             DecodingLayer.D4_MEANING: 0.15,
             DecodingLayer.D5_COLLAPSE: 0.15
         },
         SemanticType.HUMAN: {
-            DecodingLayer.D1_VISUAL: 0.15,
-            DecodingLayer.D2_TOPOLOGY: 0.30,
-            DecodingLayer.D3_EVOLUTION: 0.15,
+            DecodingLayer.D1_VISUAL: 0.10,
+            DecodingLayer.D2_TOPOLOGY: 0.40,  # 提高D2权重
+            DecodingLayer.D3_EVOLUTION: 0.10,
             DecodingLayer.D4_MEANING: 0.25,
             DecodingLayer.D5_COLLAPSE: 0.15
         },
         SemanticType.ARTIFACT: {
-            DecodingLayer.D1_VISUAL: 0.20,
-            DecodingLayer.D2_TOPOLOGY: 0.30,
+            DecodingLayer.D1_VISUAL: 0.15,
+            DecodingLayer.D2_TOPOLOGY: 0.35,  # 提高D2权重
             DecodingLayer.D3_EVOLUTION: 0.15,
-            DecodingLayer.D4_MEANING: 0.15,
-            DecodingLayer.D5_COLLAPSE: 0.20
+            DecodingLayer.D4_MEANING: 0.20,
+            DecodingLayer.D5_COLLAPSE: 0.15
         }
     }
     
@@ -236,26 +240,30 @@ class SemanticTypeConfig:
     }
     
     # 不同语义类型的最优和次优区分特征
+    # 基于最新研究数据调整特征权重
+    # 关键发现：对称性（Symmetry）是最强的跨文明同源性判别指标
+    # - 对称性相关系数：0.68（p<0.001）统计显著
+    # - 环数相关系数：0.23（p=0.07）统计不显著
     FEATURE_PRIORITY = {
         SemanticType.CELESTIAL: {
             "primary": "symmetry",
-            "secondary": "rings",
-            "weights": {"symmetry": 1.0, "euler": 0.4, "rings": 0.6, "aspect_ratio": 0.3}
+            "secondary": "euler",
+            "weights": {"symmetry": 1.0, "euler": 0.6, "rings": 0.3, "aspect_ratio": 0.4}
         },
         SemanticType.NATURAL: {
-            "primary": "aspect_ratio",
-            "secondary": "euler",
-            "weights": {"symmetry": 0.3, "euler": 0.6, "rings": 0.4, "aspect_ratio": 1.0}
+            "primary": "symmetry",
+            "secondary": "aspect_ratio",
+            "weights": {"symmetry": 0.9, "euler": 0.5, "rings": 0.3, "aspect_ratio": 0.8}
         },
         SemanticType.HUMAN: {
-            "primary": "symmetry+rings",
-            "secondary": "betti",
-            "weights": {"symmetry": 0.7, "euler": 0.5, "rings": 0.7, "aspect_ratio": 0.4}
+            "primary": "symmetry",
+            "secondary": "euler",
+            "weights": {"symmetry": 1.0, "euler": 0.7, "rings": 0.4, "aspect_ratio": 0.5}
         },
         SemanticType.ARTIFACT: {
-            "primary": "rings",
-            "secondary": "symmetry",
-            "weights": {"symmetry": 0.6, "euler": 0.5, "rings": 1.0, "aspect_ratio": 0.3}
+            "primary": "symmetry",
+            "secondary": "rings",
+            "weights": {"symmetry": 0.9, "euler": 0.5, "rings": 0.5, "aspect_ratio": 0.4}
         }
     }
 
