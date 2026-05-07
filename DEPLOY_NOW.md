@@ -3,7 +3,7 @@
 ## ✅ 已完成配置
 
 ✅ Git 远程仓库已添加
-✅ 仓库地址：https://github.com/topoglyph/tcd-origin
+✅ 仓库地址：https://github.com/huangao2026/tcd-origin
 
 ---
 
@@ -40,7 +40,7 @@ git push -u origin main
 ### 输入 GitHub 用户名和密码/Token
 
 ```
-Username: topoglyph
+Username: huangao2026
 Password: 您的GitHub密码或Personal Access Token
 ```
 
@@ -50,7 +50,7 @@ Password: 您的GitHub密码或Personal Access Token
 
 ## 🎉 第三步：验证推送成功
 
-访问 👉 **https://github.com/topoglyph/tcd-origin**
+访问 👉 **https://github.com/huangao2026/tcd-origin**
 
 确认看到所有代码文件！
 
@@ -83,7 +83,7 @@ Password: 您的GitHub密码或Personal Access Token
 
 ```
 🌐 Web界面: https://tcd-origin.railway.app
-🔗 GitHub: https://github.com/topoglyph/tcd-origin
+🔗 GitHub: https://github.com/huangao2026/tcd-origin
 ```
 
 ---
@@ -128,7 +128,7 @@ Password: 您的GitHub密码或Personal Access Token
 
 ## 🎯 项目仓库地址
 
-🔗 **https://github.com/topoglyph/tcd-origin**
+🔗 **https://github.com/huangao2026/tcd-origin**
 
 ---
 
