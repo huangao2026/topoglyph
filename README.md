@@ -2,16 +2,20 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-v3.0-blue)
-![Python](https://img.shields.io/badge/python-3.12+-green)
-![License](https://img.shields.io/badge/license-MIT-orange)
-![Stars](https://img.shields.io/badge/stars-⭐⭐⭐⭐⭐-yellow)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/YOUR_USERNAME/tcd-origin)
+![Python](https://img.shields.io/badge/python-3.8+-3776AB?logo=python&logoColor=white)
+![License](https://img.shields.io/github/license/YOUR_USERNAME/tcd-origin)
+![GitHub Stars](https://img.shields.io/github/stars/YOUR_USERNAME/tcd-origin?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/YOUR_USERNAME/tcd-origin?style=social)
+![GitHub Issues](https://img.shields.io/github/issues/YOUR_USERNAME/tcd-origin)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/YOUR_USERNAME/tcd-origin)
 
-[![一键部署](https://img.shields.io/badge/🚀-一键部署-green.svg)](./ONE_CLICK_DEPLOY.md)
-[![API文档](https://img.shields.io/badge/📖-API文档-blue.svg)](./docs/API_DOCUMENTATION.md)
-[在线演示](#)
+**🚀 一键部署** | **📖 完整文档** | **🤝 欢迎贡献**
 
-**让古老文字重现生机 | AI赋能古文字研究**
+*让古老文字重现生机 | AI赋能古文字研究*
+
+[![Watch on GitHub](https://img.shields.io/github/watchers/YOUR_USERNAME/tcd-origin?style=social)](https://github.com/YOUR_USERNAME/tcd-origin/subscription)
+[![Follow on GitHub](https://img.shields.io/github/followers/YOUR_USERNAME?style=social)](https://github.com/YOUR_USERNAME)
 
 </div>
 
