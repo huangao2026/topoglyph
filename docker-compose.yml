@@ -1,116 +1,66 @@
+# TCD Origin - Docker Compose 配置文件
+# 一键部署跨文明古文字拓扑破译引擎
+
 version: '3.8'
 
 services:
-  # Web应用
-  web:
-    build: .
-    container_name: ancient-text-ai-web
+  # ============ API 服务 ============
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tcd-origin-api
     ports:
       - "8000:8000"
     environment:
-      # 必需的环境变量
-      - COZE_WORKSPACE_PATH=/app
-      - COZE_WORKLOAD_IDENTITY_API_KEY=${COZE_WORKLOAD_IDENTITY_API_KEY}
-      - COZE_INTEGRATION_MODEL_BASE_URL=${COZE_INTEGRATION_MODEL_BASE_URL}
-      - SECRET_KEY=${SECRET_KEY:-change_this_to_a_random_secret}
-      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-*}
-
-      # PostgreSQL 数据库配置
-      - DB_HOST=${DB_HOST:-db}
-      - DB_PORT=${DB_PORT:-5432}
-      - DB_USER=${DB_USER:-ancienttext}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME:-ancienttext}
-      - DATABASE_URL=${DATABASE_URL}
-      - DB_POOL_SIZE=${DB_POOL_SIZE:-10}
-      - DB_MAX_OVERFLOW=${DB_MAX_OVERFLOW:-20}
-      - DB_TIMEOUT=${DB_TIMEOUT:-30}
-      - DB_POOL_RECYCLE=${DB_POOL_RECYCLE:-3600}
-
-      # Redis 缓存配置
-      - REDIS_HOST=${REDIS_HOST:-redis}
-      - REDIS_PORT=${REDIS_PORT:-6379}
-      - REDIS_DB=${REDIS_DB:-0}
-      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
-      - REDIS_URL=${REDIS_URL}
-      - REDIS_MAX_CONNECTIONS=${REDIS_MAX_CONNECTIONS:-50}
-      - REDIS_TIMEOUT=${REDIS_TIMEOUT:-5}
-      - REDIS_CACHE_TTL=${REDIS_CACHE_TTL:-3600}
-
-      # 日志配置
-      - LOG_LEVEL=${LOG_LEVEL:-INFO}
-      - MAX_MESSAGES=${MAX_MESSAGES:-40}
-
-      # 模型配置
-      - MODEL_TEMPERATURE=${MODEL_TEMPERATURE:-0.6}
-      - MAX_TOKENS=${MAX_TOKENS:-32768}
-      - REQUEST_TIMEOUT=${REQUEST_TIMEOUT:-600}
-
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DEBUG=False
+      - LOG_LEVEL=INFO
+      # 可选：火山引擎知识库
+      # - VOLCENGINE_API_KEY=your_api_key
+      # - VOLCENGINE_SERVICE_ID=your_service_id
+      # 可选：LLM配置
+      # - LLM_API_KEY=your_openai_key
+      # - LLM_MODEL=gpt-4
     volumes:
-      - ./data:/app/data
-      - ./logs:/app/work/logs
-      - ./tmp:/tmp
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
     restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    networks:
-      - ancient-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 40s
+    networks:
+      - tcd-network
 
-  # PostgreSQL数据库
-  db:
-    image: postgres:16-alpine
-    container_name: ancient-text-ai-db
+  # ============ Web 界面 ============
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tcd-origin-web
+    ports:
+      - "7860:7860"
+    command: python web_app.py
     environment:
-      - POSTGRES_USER=${DB_USER:-ancienttext}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_NAME:-ancienttext}
-      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --locale=C
+      - SERVER_NAME=0.0.0.0
+      - SERVER_PORT=7860
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    depends_on:
+      - api
     restart: unless-stopped
     networks:
-      - ancient-network
-    ports:
-      - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-ancienttext} -d ${DB_NAME:-ancienttext}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
+      - tcd-network
 
-  # Redis缓存
-  redis:
-    image: redis:7-alpine
-    container_name: ancient-text-ai-redis
-    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-}
-    volumes:
-      - redis_data:/data
-    restart: unless-stopped
-    networks:
-      - ancient-network
-    ports:
-      - "6379:6379"
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
-
-  # Nginx反向代理（可选）
+  # ============ Nginx 反向代理（可选）============
   nginx:
     image: nginx:alpine
-    container_name: ancient-text-ai-nginx
+    container_name: tcd-origin-nginx
     ports:
       - "80:80"
       - "443:443"
@@ -118,15 +68,31 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/ssl:/etc/nginx/ssl:ro
     depends_on:
+      - api
       - web
     restart: unless-stopped
     networks:
-      - ancient-network
-
-volumes:
-  postgres_data:
-  redis_data:
+      - tcd-network
+    profiles:
+      - with-nginx
 
 networks:
-  ancient-network:
+  tcd-network:
     driver: bridge
+
+# 使用方法:
+# 
+# 基础部署（API + Web）:
+#   docker-compose up -d
+#
+# 完整部署（包含Nginx）:
+#   docker-compose --profile with-nginx up -d
+#
+# 查看日志:
+#   docker-compose logs -f
+#
+# 停止服务:
+#   docker-compose down
+#
+# 重新构建:
+#   docker-compose build --no-cache
