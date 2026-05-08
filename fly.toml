@@ -1,5 +1,4 @@
 app = "tcd-origin"
-primary_region = "sin"
 
 [build]
   dockerfile = "Dockerfile"
