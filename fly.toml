@@ -1,0 +1,24 @@
+app = "tcd-origin"
+primary_region = "sin"  # 新加坡，对中国用户更快
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
+  HOST = "0.0.0.0"
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 10
+    soft_limit = 5
+
+  [[services.ports]]
+    port = 80
+
+  [[services.tcp_checks]]
+    interval = "10s"
+    timeout = "2s"

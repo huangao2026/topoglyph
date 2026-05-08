@@ -11,7 +11,8 @@ import os
 from typing import Tuple
 
 # 添加项目根目录到路径
-sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 from src.tools.tcd_origin_engine import TCDOriginEngine
 
@@ -386,11 +387,13 @@ with gr.Blocks(
     本系统仅供学习和研究使用，分析结果仅供参考。
     """)
 
+import os
+
 # 启动应用
 if __name__ == "__main__":
     demo.launch(
         server_name="0.0.0.0",
-        server_port=7860,
-        share=True,
+        server_port=int(os.getenv("PORT", 8080)),
+        share=False,
         debug=False
     )
