@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     pkg-config \
     libcairo2-dev \
-    libgdk-pixbuf2.0-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # 复制依赖文件
