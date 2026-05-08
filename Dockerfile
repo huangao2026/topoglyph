@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgirepository1.0-dev \
     libffi-dev \
     gir1.2-gdkpixbuf-2.0 \
+    dbus \
+    xvfb \
     && rm -rf /var/lib/apt/lists/*
 
 # 复制依赖文件
