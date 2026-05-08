@@ -2,11 +2,8 @@
 古文字破译系统 - 工具集
 """
 
-# 导入现有工具（如果有）
-# from tools.some_tool import some_function
-
 # 导入火山引擎知识库工具
-from tools.volcengine_knowledge import (
+from src.tools.volcengine_knowledge import (
     search_volcengine_knowledge,
     search_volcengine_knowledge_with_context,
     multi_round_knowledge_chat,
@@ -14,7 +11,7 @@ from tools.volcengine_knowledge import (
 )
 
 # 导入TCD Origin破译引擎工具
-from tools.tcd_origin_engine import (
+from src.tools.tcd_origin_engine import (
     TCDOriginEngine,
     CrossCivilizationAnalyzer,
     DecodingLayer,
@@ -28,7 +25,7 @@ from tools.tcd_origin_engine import (
     SemanticTypeConfig
 )
 
-from tools.tcd_origin_tools import (
+from src.tools.tcd_origin_tools import (
     tcd_full_analysis,
     tcd_homology_distance,
     tcd_layer_analysis,
@@ -38,7 +35,7 @@ from tools.tcd_origin_tools import (
 )
 
 # 导入拓扑分析工具（专利技术）
-from tools.topology_analyzer import (
+from src.tools.topology_analyzer import (
     TopologyAnalyzer,
     CrossCivilizationAnalyzer as LegacyCrossAnalyzer,
     SemanticType as LegacySemanticType
