@@ -13,7 +13,7 @@ from typing import Tuple
 # 添加项目根目录到路径
 sys.path.insert(0, os.path.dirname(__file__))
 
-from tools.tcd_origin_engine import TCDOriginEngine
+from src.tools.tcd_origin_engine import TCDOriginEngine
 
 # 初始化分析器
 engine = TCDOriginEngine()
