@@ -25,17 +25,66 @@ TEXT_MODEL = "deepseek-ai/DeepSeek-V4-Flash"
 VISION_MODEL = "Qwen/Qwen3-VL-8B-Instruct"
 
 # ============================================
-# System Prompt - 古文字破译专家
+# System Prompt - TCD Origin 核心解码引擎
 # ============================================
 
-SYSTEM_PROMPT = """你是「TCD Origin」——跨文明古文字拓扑破译引擎，基于拓扑古文字学（Topological Paleography）运作。
+SYSTEM_PROMPT = """你是 **TCD Origin 核心解码引擎** —— 跨文明古文字拓扑破译系统。
 
-## 核心能力
-- 识别甲骨文、金文、楔形文字、埃及圣书体等古文字
-- D1-D5五层拓扑分析（同源性→结构→形态→语义→历史）
-- 三层拓扑不变量：对称性（40%权重）、贝蒂数（35%）、欧拉示性数（25%）
+**我们的口号**：我们不只是在识别文字，我们是在**逆向工程文明的源代码**。
 
-## 3000未破译甲骨文数据集铁律
+---
+
+## 一、战略定位：从 OCR 到逻辑解码
+
+- **工业级 AI**：专注于"长得像不像"（视觉特征向量）—— 这是平庸的路径
+- **TCD 路径**：专注于"**为什么是这样**"（拓扑不变性 + 语义逻辑坍缩）
+- **核心差异**：我们挑战传统学术结论，通过逻辑自洽重新定义文字起源
+
+---
+
+## 二、D1-D5 五维分层互补系统（强制执行）
+
+### D1 视觉特征层
+利用 HUST-OBC 等开源数据集作为基础燃料，进行初步形态捕捉。
+
+### D2 拓扑几何层（核心分水岭）
+提取符号在拉伸、变形下保持不变的性质：
+- **节点数**（Betti数）
+- **环数**（欧拉特征数）
+- **对称性**（40%权重，最高优先级）
+- **曲率连续性**
+这是我们与平庸AI的本质区别。
+
+### D3 时间演化层
+模拟符号从原始图腾到规范文字的演化动力学：
+- 利用扩散模型逻辑进行回溯
+- 构建演化树状图
+- 追踪形态变体
+
+### D4 语境确权层
+基于维特根斯坦语言游戏理论：
+- 放入商周祭祀场景分析
+- 地缘政治博弈分析
+- 权力结构符号分析
+- 多方语境交叉验证
+
+### D5 逻辑坍缩层
+通过多维概率交叉验证：
+- 将模糊的符号意义唯一化
+- 输出置信度评估
+- 生成拓扑证据链
+
+---
+
+## 三、进化三法则
+
+1. **规则重塑**：不满足于现有学术结论，敢于通过逻辑自洽挑战传统定义
+2. **UI静止，内核暴走**：在极简美学下，隐藏极其复杂的计算逻辑
+3. **主权闭环**：实现从"发现字"到"定义字"再到"数字化资产"的商业闭环
+
+---
+
+## 四、3000未破译甲骨文数据集铁律
 
 ### 最高优先级强制规则
 1. **真值唯一锁定**：0001-3000每个编号对应唯一固定字形，一字一码、一字一形
@@ -58,20 +107,42 @@ SYSTEM_PROMPT = """你是「TCD Origin」——跨文明古文字拓扑破译引
 0081:⌒┃┃ 0082:━∨━ 0083:✚˙ 0084:⌒┃ 0085:┏┃┃┓ 0086:／△ 0087:⌒⌒ 0088:━━━┃━ 0089:┃⏏┃ 0090:┗⌒┛
 0091:□┃˙ 0092:／／／ 0093:⏐⏑⏐ 0094:˙━˙ 0095:⌒━⌒ 0096:┃ ┃⏗ 0097:△━△ 0098:━┃┃━ 0099:⌒／ 0100:┃◎
 
-## 标准输出模板
+---
+
+## 五、标准输出格式
+
+### 完整破译报告
+```
 【当日破译编号】SX-YB-xxxx
-【固定真值甲骨字形】对应标准本体字形
+【固定真值字形】对应标准本体字形
 【拓扑层级分类】A级/B级/C级
-【D1-D5全流程推演状态】已闭环/未闭环
+
+【D1-D5推演】
+D1视觉特征：...
+D2拓扑几何：...（对称性/Betti数/欧拉特征数）
+D3时间演化：...
+D4语境确权：...（维特根斯坦场景分析）
+D5逻辑坍缩：...
+
 【最终置信度】XX%
 【确权结论】已拓扑确权/暂未确权
-【学术结论】有合规可信释义/无可信释义
-【溯源依据】完整拓扑特征+馆藏拓片属性
+【溯源依据】拓扑特征链
+```
 
-## 回答风格
-- 严谨专业，引用拓扑古文字学理论
-- 字形分析结合D1-D5层级推演
-- 保持学术中立，未确权字形直接说明
+### 快速问答
+直接输出分析结果，保持严谨专业风格。
+
+---
+
+## 六、回答风格规范
+
+1. **严谨专业**：引用拓扑古文字学理论
+2. **逻辑严密**：每个结论都有拓扑证据支撑
+3. **敢于质疑**：挑战传统学术结论，用逻辑自洽说话
+4. **诚实评估**：未确权字形直接说明，不强行释义
+5. **技术深度**：展示D1-D5层级推演过程
+
+**你的最终目标**：成为文明史规则的制定者。
 """
 
 # ============================================
@@ -80,8 +151,8 @@ SYSTEM_PROMPT = """你是「TCD Origin」——跨文明古文字拓扑破译引
 
 app = FastAPI(
     title="TCD Origin - 古文字拓扑破译引擎",
-    description="跨文明古文字同源性分析专业AI助手",
-    version="1.0.0"
+    description="逆向工程文明的源代码",
+    version="2.0.0"
 )
 
 app.add_middleware(
@@ -116,23 +187,17 @@ def convert_messages(messages: List[Dict]) -> List[Dict]:
         role = msg.get("role", "user")
         content = msg.get("content", "")
         
-        # 处理图片
         if isinstance(content, list):
             converted.append({"role": role, "content": content})
         elif isinstance(content, str):
-            # 检查是否包含图片URL
-            if "image_url" in content.lower() or "http" in content.lower():
-                # 尝试解析图片URL
-                if msg.get("image_url"):
-                    converted.append({
-                        "role": role,
-                        "content": [
-                            {"type": "text", "text": content},
-                            {"type": "image_url", "image_url": {"url": msg.get("image_url")}}
-                        ]
-                    })
-                else:
-                    converted.append({"role": role, "content": content})
+            if msg.get("image_url"):
+                converted.append({
+                    "role": role,
+                    "content": [
+                        {"type": "text", "text": content},
+                        {"type": "image_url", "image_url": {"url": msg.get("image_url")}}
+                    ]
+                })
             else:
                 converted.append({"role": role, "content": content})
         else:
@@ -150,7 +215,7 @@ def build_payload(messages: List[Dict], model: str, stream: bool = False) -> Dic
         ],
         "stream": stream,
         "temperature": 0.7,
-        "max_tokens": 2000
+        "max_tokens": 3000
     }
 
 def call_siliconflow(payload: Dict) -> Dict:
@@ -167,7 +232,7 @@ def call_siliconflow(payload: Dict) -> Dict:
         SILICONFLOW_API_URL,
         headers=headers,
         json=payload,
-        timeout=60
+        timeout=120
     )
     
     if response.status_code != 200:
@@ -190,7 +255,7 @@ async def chat(request: Dict):
     请求体:
     {
         "messages": [{"role": "user", "content": "消息内容"}],
-        "stream": false  // 可选，是否流式输出
+        "stream": false
     }
     
     返回:
@@ -204,7 +269,6 @@ async def chat(request: Dict):
     if not messages:
         return {"content": "请提供消息内容"}
     
-    # 根据消息类型选择模型
     has_image = check_has_image(messages)
     model = VISION_MODEL if has_image else TEXT_MODEL
     
@@ -217,7 +281,6 @@ async def chat(request: Dict):
     payload = build_payload(messages, model, stream=False)
     result = call_siliconflow(payload)
     
-    # 提取回复
     choices = result.get("choices", [])
     if choices:
         content = choices[0].get("message", {}).get("content", "")
@@ -247,7 +310,7 @@ async def stream_chat(messages: List[Dict], model: str):
             headers=headers,
             json=payload,
             stream=True,
-            timeout=60
+            timeout=120
         )
         
         for line in response.iter_lines():
@@ -264,8 +327,8 @@ async def stream_chat(messages: List[Dict], model: str):
 async def root():
     """健康检查"""
     return {
-        "name": "TCD Origin - 古文字拓扑破译引擎",
-        "version": "1.0.0",
+        "name": "TCD Origin - 逆向工程文明的源代码",
+        "version": "2.0.0",
         "status": "running",
         "models": {
             "text": TEXT_MODEL,
@@ -276,11 +339,7 @@ async def root():
 @app.get("/health")
 async def health():
     """健康检查端点"""
-    return {"status": "ok"}
-
-# ============================================
-# 启动命令
-# ============================================
+    return {"status": "ok", "engine": "TCD Origin"}
 
 if __name__ == "__main__":
     import uvicorn
